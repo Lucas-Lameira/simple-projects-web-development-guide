@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <label for="Red">red</label>
+    <input 
+        type="text" 
+        id="red" 
+        value="00" 
+        maxlength="2"
+        placeholder="red"
+    >
+    <input 
+        type="text"  
+        value="0" 
+        maxlength="2"
+        class="increments"
+        id="incrementRed"
+    >
+
+    <label for="green">Green</label>
+    <input 
+        type="text" 
+        id="green" 
+        value="00" 
+        maxlength="2"
+        placeholder="green"
+    >
+    <input 
+        type="text"  
+        value="0" 
+        maxlength="2"        
+        class="increments"
+        id="incrementGreen"
+    >
+
+    <label for="blue">Blue</label>
+    <input 
+        type="text" 
+        id="blue" 
+        value="00" 
+        maxlength="2"
+        placeholder="blue"
+    >
+    
+    <input 
+        type="text"  
+        value="0" 
+        maxlength="2"        
+        class="increments"
+        id="incrementBlue"
+    >
+    
+    <button id="botao" onclick="play()">
+        Play
+    </button>
+    
+    <div id="box-color"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
