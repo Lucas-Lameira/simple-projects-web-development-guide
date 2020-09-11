@@ -1,33 +1,125 @@
 
-
-button{
-    width: 150px;
-    height: 80px;
-
-    border-radius: 8px;
-    border: 0.2px solid green;
-
-    background-color: rgb(79, 181, 250);
-    color: #fff;
-
-    font-size: 20px;
-    font-weight: bold;
+@keyframes screenAnimation {
+    0% {box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.164);}   
+    20% {box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.294);}   
+    40% {box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.452);}   
+    60% {box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.705);}   
+    80% {box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.876);}   
+    100% {box-shadow: 0px 1px 24px 8px rgb(255, 255, 255);}
 }
 
-input{
-    height: 25px;
-    font-size: 24px;
-    width:100px;
+body{
+    background-color: rgb(0, 0, 0);
+    margin: 0;
 }
 
 #box-color{
-    width: 500px;
-    height: 500px;
-    border: 1px solid black;
+    width: 60vw;
+    height: 300px;
+    border: 10px solid rgb(255, 255, 255);
+    border-radius: 16px;
+    margin: 16px auto;
+    box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.849);
+    animation-name: screenAnimation;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: 1s;
+}
+
+#input-container{
+    width: 98vw;
+    margin: 16px 0;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+fieldset{
+    margin:4px 8px;
+    border-radius: 8px;
+}
+
+
+#red-field{
+    border: 5px solid red;
+    color: red;
+}
+
+#green-field{
+    border: 5px solid green;
+    color: green;
+}
+
+#blue-field{
+    border: 5px solid blue;
+    color: blue;    
+}
+
+section fieldset input{
+    width:50px;
+    height: 25px;
+
+    font-size: 24px;
+    margin: 2px 4px;
+}
+
+section fieldset#red-field input#red, input#incrementRed{
+    color: rgba(255, 0, 0, 0.39);
+    border: 1px solid rgba(255, 40, 40,  0.424);
+    border-radius: 8px;
+}
+
+section fieldset#green-field input#green, input#incrementGreen {
+    color: rgba(0, 128, 0, 0.39);
+    border: 1px solid rgba(0, 128, 0,  0.424);
+    border-radius: 8px;
+}
+
+section fieldset#blue-field input#blue, input#incrementBlue{
+    color: rgb(0, 0, 255);
+    border: 1px solid rgba(0, 0, 255, 0.424);
+    border-radius: 8px;
+}
+
+
+button{
+    display: block;
+    width: 150px;
+    height: 80px;
+    margin: 8px auto;
+    border-radius: 8px;
+    border: 2px solid rgb(255, 255, 255);    
+    background-color: rgb(79, 181, 250);
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 1s;
+}
+
+button:hover{
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(255, 255, 255);
+    background-color: rgb(2, 2, 2);
+    border: 15px dashed white;
+    box-shadow: 0px 1px 8px 2px rgba(255, 255, 255, 0.849);/* x,y blur espalhamento color*/
 }
 
 .increments{
     width:50px;
     height: 25px;
     font-size: 24px;
+}
+
+footer{
+    background-color: rgba(23, 23, 23, 0.465);
+    height: 100px;  
+    padding: 8px;
+    margin-top: 24px;
+    color: white;
+    text-align: center;
 }
