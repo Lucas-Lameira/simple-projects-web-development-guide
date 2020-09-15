@@ -1,4 +1,11 @@
 
+
+@keyframes changeColor {
+    0% {background-color: black;}        
+    100% {background-color: black;}
+}
+
+
 @keyframes screenAnimation {
     0% {box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.164);}   
     20% {box-shadow: 0px 1px 24px 8px rgba(255, 255, 255, 0.294);}   
@@ -10,7 +17,12 @@
 
 body{
     background-color: rgb(0, 0, 0);
-    margin: 0;
+    margin: 0;    
+}
+
+#hexacolor{
+    color: white;
+    text-align: center;
 }
 
 #box-color{
@@ -27,7 +39,7 @@ body{
 }
 
 #input-container{
-    width: 98vw;
+    width: 96vw;
     margin: 16px 0;
     padding: 8px;
 
@@ -117,7 +129,7 @@ button:hover{
 
 footer{
     background-color: rgba(23, 23, 23, 0.465);
-    height: 100px;  
+    height: 20vh;  
     padding: 8px;
     margin-top: 24px;
     color: white;

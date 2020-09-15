@@ -1,7 +1,9 @@
 const buttonElement = document.getElementById('botao');
 const boxColor = document.getElementById('box-color');
+const output = document.getElementById('hexacolor');
 
 let toggleButton = false;
+let hexaColor;
 
 let redInput = document.getElementById('red');
 let greenInput = document.getElementById('green');
@@ -19,7 +21,30 @@ let plusRed;
 let plusGreen;
 let plusBlue;
 
-function play() {    
+//document.styleSheets[0] vai no primeiro estilo dentro do html
+//cssRules[0] vai no primeiro bloco de css
+//ou seja, vai ate o arquivo styles.css e pega o @keyframe
+//o retorno, entao, é um CSSKeyframesRule, devido ao @keyframe
+let animationKey = document.styleSheets[0].cssRules[0];
+
+/* DOM interfaces
+CSSKeyframesRule:
+    name          --  attribute
+    cssRules      --  attribute
+    appendRule()  --  method
+    deleteRule()  --  method
+    findRule()    --  method
+CSSKeyframeRule:
+    cssText       --  attribute
+    keyText       --  attribute
+    style         --  attribute
+    type          --  attribute
+*/
+
+
+function play() {
+    //se os numeros forem precedidos de 0x o javascript interpreta como hexadecimal e converte para numeros inteiros
+    //caso o usuário digite letras diferentes das presentes nos hexadecimal, o retorno é NaN
     red = Number('0x' + redInput.value);
     green = Number('0x' + greenInput.value);
     blue = Number('0x' + blueInput.value);
@@ -27,12 +52,33 @@ function play() {
     plusRed = Number('0x' + incrementRed.value);
     plusGreen = Number('0x' + incrementGreen.value);
     plusBlue = Number('0x' + incrementBlue.value);
-       
+    
+    checkIsNotNumber();
+    convertToHexadecimal();
+    hexaColor = "#" + red + green + blue;
+    
     if(!toggleButton){
         buttonElement.innerHTML = 'Pause';
-        toggleButton = true;        
+        toggleButton = true; 
+
+        boxColor.style.animationName = 'changeColor';
+        boxColor.style.animationDuration = '2s'
+        boxColor.style.animationIterationCount = 'infinite';
+        boxColor.style.animationDirection = 'alternate'
+
+        console.log(hexaColor)
+        output.innerHTML = hexaColor
+        animationKey.appendRule(`0% {background-color: ${hexaColor};}`);
+        converteToDecimal();
+        convertToHexadecimal();
+        hexaColor = "#" + red + green + blue;
+        output.innerHTML = "first color: " + output.innerText +" <br>" + "second color: " + hexaColor 
+        console.log(hexaColor)
+        animationKey.appendRule(`100% {background-color: ${hexaColor};}`);
     }else{
+        boxColor.style.animationName = '';
         buttonElement.innerHTML = 'Play'    
+        output.innerHTML = ''
         toggleButton = false;    
     }
 }
@@ -76,10 +122,15 @@ function convertToHexadecimal() {
     if(blue == 0) blue = "00";
     if(blue < 9 && blue > 0) blue = "0"+ blue;
     if(blue.length < 2) blue = "0" + blue;
+
+    /* console.log(`red: ${red}\nGreen: ${green}\nBlue: ${blue}`)  */
 }
 
 function converteToDecimal() {
     red = Number('0x' + red);
     green = Number('0x' + green);
-    blue = Number('0x' + blue);   
+    blue = Number('0x' + blue);
+
+    increments();
+    validadeMaxLenght()
 }

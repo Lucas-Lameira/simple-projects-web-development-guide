@@ -1,50 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
+    <!-- character encoding for the document -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">    
-    <title>Color Cycle</title>    
+    <!-- Responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,, viewport-fit=cover">
+    <!-- Meta Description - about 150 characters - describe your website  -->
+    <meta name="description" content="the user can increment the hexadecimal code color and see the animation on a screen" > 
+    <!-- author meta -->
+    <meta name="author" content="Lucas de souza lameira" >
+    <!-- Favicon png 32x32-->
+    <link rel="shortcut icon" href="./favicon/favicon-32x32.png" type="image/x-icon">
+    <!-- long Title but less than 55 characters 
+        SEO: Google calculates the pixel width of the characters used in the title, and it cuts off between 472 and 482 pixels. The average character limit would be around 55-characters-->
+    <title>Animation screen using hexadecimal color code</title>  
+    <!-- Link to css -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="box-color">
-        
-    </div>
+    <div id="box-color"></div>
+    <div id="hexacolor"></div>
     <section id= input-container>
         <fieldset id="red-field">
-            <legend>Red</legend>            
+            <legend>Red</legend>                   
             <input type="text" id="red" value="00" maxlength="2" placeholder="red">
-            <input type="text" value="0" maxlength="1" class="increments" id="incrementRed">
+            <input type="text" value="0" maxlength="2" class="increments" id="incrementRed">
         </fieldset>
             
         <fieldset id="green-field">
             <legend>Green</legend>            
             <input type="text" id="green" value="00" maxlength="2"placeholder="green">
-            <input type="text" value="0" maxlength="1" class="increments" id="incrementGreen">
+            <input type="text" value="0" maxlength="2" class="increments" id="incrementGreen">
         </fieldset>
     
         <fieldset id="blue-field">
             <legend>Blue</legend>            
             <input type="text" id="blue" value="00" maxlength="2" placeholder="blue">
-            <input type="text" value="0" maxlength="1" class="increments" id="incrementBlue">
+            <input type="text" value="0" maxlength="2" class="increments" id="incrementBlue">
         </fieldset>              
     </section>
-    <button id="botao" onclick="play()">
-        Play
-    </button>  
-    
+    <button id="botao" onclick="play()">Play</button>  
+
     <footer>
         <p>
-            Insira codigo hexadecimal para mudar a cor da tela,
-            os numeros válidos são de 00 a ff, o equivalente de 0 a 255.
-        </p>
-        
-        <p>
-            O primeiro campo se refere ao valor para um tanto de vermelho, o segundo valor
-            incrementa o primeiro valor inserido. 
-            Isso é válido para, também, para os capos
-            verde e azul.
-        </p>
+        Insert hexadecimal code to change the screen color,
+        valid numbers are from 00 to ff, the equivalent of 0 to 255.<br>
+        The first field refers to the value for a little bit of red,the second value increments the first value entered.
+        This also works for the green field and blue field            
+        </p>        
     </footer>
     <script src="script.js"></script>
 </body>
