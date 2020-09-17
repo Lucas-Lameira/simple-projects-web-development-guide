@@ -1,43 +1,77 @@
-const olElement = document.getElementById('xmas-light');
+const olElement = document.getElementsByTagName('ol');
 const buttonElement = document.getElementById('btn');
-
 const inputRangeElement = document.getElementById('spd');
 const spd_output = document.getElementById('range-setup');
 let speed;
 
-let liElements = olElement.children;
 let turnOnOff = false;
+let li;
 
-
-
-for(let i = 0; i<10; i++){
-    let li = document.createElement('li')
-    li.setAttribute('class', 'light');
-    olElement.appendChild(li);
+for(let i = 0; i<5; i++){
+    for(let j = 0; j < 6; j++){
+        li = document.createElement('li')
+        olElement[i].appendChild(li);
+    }
 }
-let counter = liElements.length;
+let counter = olElement[0].children.length
+
 
 function turnLights () {
     if(!turnOnOff){
-        buttonElement.innerHTML = 'Lights On';        
-        for(i = 0; i < counter; i++){
-            liElements[i].style.animationName = 'lightsOn';
-            liElements[i].style.animationDuration = speed + 's';
+        buttonElement.innerHTML = 'Lights On';                                
+        for(let i = 0; i< 5; i++){
+            for(let j = 0; j < counter; j++){                
+                if(i==0){
+                    olElement[i].children[j].style.animationName = 'blueLightsOn';                    
+                }else if(i==1){
+                    olElement[i].children[j].style.animationName = 'yellowLightsOn';                    
+                }else if(i==2){
+                    olElement[i].children[j].style.animationName = 'whiteLightsOn';                    
+                }else if(i==3){
+                    olElement[i].children[j].style.animationName = 'greenLightsOn';                    
+                }else{
+                    olElement[i].children[j].style.animationName = 'redLightsOn';                    
+                }                  
+            }
         }
         turnOnOff = true;
     }else{
         buttonElement.innerHTML = 'Lights Off';        
-        for(i = 0; i < counter; i++){
-            liElements[i].style.animationName = '';
-            liElements[i].style.animationDuration = '0s'
+        for(let i = 0; i< 5; i++){
+            for(let j = 0; j < counter; j++){                
+                if(i==0){
+                    olElement[i].children[j].style.animationName = '';                
+                }else if(i==1){
+                    olElement[i].children[j].style.animationName = '';                    
+                }else if(i==2){
+                    olElement[i].children[j].style.animationName = '';                    
+                }else if(i==3){
+                    olElement[i].children[j].style.animationName = '';                    
+                }else{
+                    olElement[i].children[j].style.animationName = '';                    
+                }                  
+            }
         }
         turnOnOff = false;
     }
 }
 
-
 inputRangeElement.oninput = function () {
     spd_output.innerHTML = this.value + 's';
-    speed = this.value;
-    console.log(speed);
+    speed = this.value;    
+    for(let i = 0; i< 5; i++){
+        for(let j = 0; j < counter; j++){                
+            if(i==0){
+                olElement[i].children[j].style.animationDuration = speed + 's';
+            }else if(i==1){
+                olElement[i].children[j].style.animationDuration = speed + 's';
+            }else if(i==2){
+                olElement[i].children[j].style.animationDuration = speed + 's';
+            }else if(i==3){
+                olElement[i].children[j].style.animationDuration = speed + 's';
+            }else{
+                olElement[i].children[j].style.animationDuration = speed + 's';
+            }                  
+        }
+    }
 }
