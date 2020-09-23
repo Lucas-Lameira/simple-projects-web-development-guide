@@ -13,46 +13,46 @@
 </head>
 <body>
 
-    <fieldset>
-        <label for="event-name">
-            <legend>Event name</legend>
-        </label>
-        <input type="text" name="event-name" id="event-name" placeholder="Enter the event name" required>
-    </fieldset>
+    <main id="container">
+        <h1 id="title" ></h1>
+        <div id="date-cotainer">
+            
+        </div>
+        <div id="time-cotainer">
+            
+        </div>
+    </main>
 
-    <fieldset>        
-        <label for="date">
-            <legend>Data</legend>
-        </label>
-        <input id="date" type="date" name="date" required>
-    </fieldset>
-    
-    <fieldset>
-        <label for="time">
-            <legend>Time</legend>
-        </label>
-        <input type="time" name="time" id="time">
-    </fieldset>
 
+    <div id="data-field">
+        <fieldset>
+            <label for="event-name">
+                <legend>Event name</legend>
+            </label>
+            <input type="text" name="event-name" id="event-name" placeholder="Enter the event name" required>
+        </fieldset>
+
+        <fieldset>        
+            <label for="date">
+                <legend>Data</legend>
+            </label>
+            <input id="date" type="date" name="date" required>
+        </fieldset>
+        
+        <fieldset>
+            <label for="time">
+                <legend>Time</legend>
+            </label>
+            <input type="time" name="time" id="time">
+        </fieldset>
+    </div>
+    <span>Time : </span> <span id="hora"></span>    
     <button onclick="countDown()">Start</button>
-    
 
-    <span>Time : </span> <span id="hora">00:00</span>
-    
+
     
     <div id="test"></div>
-
-    <span id="nameOut"></span><br>
-    <span id="dateOut"></span><br>
-    <span id="hora-marcada"></span><br>
-    <span id="today"></span><br>
-
-    <div id="current-time">
-        
-    </div>
-
-    <span id="hora"></span>
-
+    <div id="not-today"></div>
     <script src="countDown.js"></script>
 </body>
 </html>

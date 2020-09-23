@@ -1,52 +1,87 @@
-var time_field = document.querySelector('input#time');
+var then = document.getElementById('not-today');
+var eventTitle = document.getElementById('title')
+var time_field = document.getElementById('time');
+var outputTime = document.getElementById('hora');
 
+var currentTime;
+var eventTime;
+var diference;
 
-const outputTime = document.querySelector('span#hora'),
-      outputTime2 = document.querySelector('span#hora2')
+let dia;
+let hora;
+let minutos;
+let segundos;
 
-var x = new Date().getTime();
+let toggleBtn = false;
+var intervalId;
+/* constructor Date() */
+/* year, month, day, hours, minutes, seconds, milliseconds */
 
-console.log(x)
+var x = new Date();
 
+function countDown() {     
 
-function countDown() {
-    let event_name = document.getElementById('event-name').value,
-        date_field = document.querySelector('input#date').value,
-        timer = document.querySelector('input#time').value,
-        dateArray,
-        hour,
-        minutes;
-
-    if(validateEventName(event_name)){    
-        alert('Whats the occasion!');        
-        return;
+    if(validateEventName(document.getElementById('event-name').value)){
+        alert('Nome do evento inválido');
+        return
     }
 
-    if(validateEmptyDate(date_field)){
-        alert('I kind of need a valiDate! ba dum tsc');
-        return;
+
+    if(validateEmptyDate(document.getElementById('date').value)){
+        alert('Data inválida');
+        return
     }
-    dateArray = date_field.split('-');
 
-    setArrayToNumber(dateArray);
-
-    if(timer === ''){
-        timer = '00:00';
-    }
-    timer = timer.split(':')
-
-    validateTime(dateArray, timer)
+    validateTime(document.getElementById('time').value)
 
 
 
-    function renderTime (timer){
-        document.getElementById('current-time').innerText = new Date().toLocaleTimeString()
-        outputTime.innerHTML = `${timer[0]} :${timer[1]}`
-        timer[1] -= timer[1]
+
+    if (!toggleBtn) {
+        document.querySelector('button').innerHTML = 'Stop';
+        toggleBtn = true;
+        eventTitle.innerHTML = document.getElementById('event-name').value ;
         
-               
+        document.getElementById('container').style.display = 'flex'
+    
+        let [year, month, day] = document.getElementById('date').value.split('-');
+        let [hour, minute] = document.getElementById('time').value.split(':');
+        
+        /* Janeiro ta na posição zero do array */
+        month-=1;
+
+        function renderTime(){        
+            currentTime = new Date().getTime();
+            
+            /*constructor: year, month, day, hous, minutes */
+            eventTime = new Date(year, month, day, hour, minute).getTime();
+        
+            diference = eventTime - currentTime;
+    
+            segundos = Math.floor(diference / 1000);
+            minutos = Math.floor(segundos / 60);
+            hora = Math.floor(minutos / 60);
+            dia = Math.floor(hora / 24);
+    
+            hora %= 24;
+            minutos %= 60;
+            segundos %= 60;
+    
+            hora = hora < 10 ? "0" + hora: hora; 
+            minutos = minutos < 10 ? "0" + minutos: minutos; 
+            segundos = segundos < 10 ? "0" + segundos: segundos; 
+                
+            then.innerHTML = dia + ':' + hora + ':' + minutos + ':' + segundos;       
+           
+        }
+        intervalId = setInterval(renderTime, 1000);
+
+    } else {
+        document.querySelector('button').innerHTML = 'Start';
+        toggleBtn = false;
+        clearInterval(intervalId)
     }
-    setInterval(renderTime(timer), 1000)/* retorna um id, usar o id no clearinterval */
+    
 }
 
 function validateEventName(event_name_input) {
@@ -68,49 +103,13 @@ function validateEmptyDate (date_field_input) {
     }
 }
 
-function validateTime(date_array, time){
-
-   setArrayToNumber(time)
-
-   if(date_array[0] === x.getFullYear() && date_array[1] === x.getMonth()+1 && date_array[2] === x.getDate()){
-        /* condição que verifica se é o dia em que estamos  */
-        document.getElementById('hora-marcada').innerHTML = time;
-        document.getElementById('today').innerHTML = `É hoje!!!`
-        /* condição que verifica se a hora no dia atual é valida */
-        if(time[0]< x.getHours()){
-            alert("essa hora ja passou")
-            return
-        }
-        /* condição que verifica se os minutos no dia atual são validos */
-        if(time[0]== x.getHours() && time[1] < x.getMinutes()){
-            alert('Minutos passaram')
-            return
-        }
-   }   
-}
-
-function setArrayToNumber(array) {
-    for(let i =0; i<array.length; i++){
-        array[i] = parseInt(array[i]);
+function validateTime(x){
+    if(x == ''){
+        document.getElementById('time').value = "00:00";
     }
 }
 
 
-
-
-/* 
-Notes:
-    getMonth: janeiro começa na posição 0, logo dezembro está na posição 11
-    getMilliseconds: de 0 a 999
-*/
-
-/* const week_day = ["domingo", "segunda", "terça", "quarta", "Quinta", "sexta", "sabado"];
-
-console.log(x.getMonth(), x.getDate(), x.getFullYear())
-console.log(`Hora: ${x.getHours()}:${x.getMinutes()}:${x.getSeconds()}`);
-console.log(`Dia da semana: ${week_day[x.getDay()]}`)
-
-document.getElementById('test').innerHTML = x; */
 time_field.oninput = function () {
     outputTime.innerHTML = time_field.value;    
 }
