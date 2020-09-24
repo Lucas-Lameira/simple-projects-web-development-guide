@@ -5,54 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Lucas Lameira">
     <meta name="description" content="">
-
-    <link rel="stylesheet" href="../assets/reset.css">
-
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <title>Countdown timer for your favorite event</title>
 </head>
 <body>
+    <header>
+        <button id="add-event">
+            <h1>Add event</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+            
+        <button id="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </button>
+    </header>
 
-    <main id="container">
-        <h1 id="title" ></h1>
-        <div id="date-cotainer">
+    <section id="tooltip-content">
+        <p>
+            Clique em Add event para cadastrar a data de um evento e saiba quantos dias, horas, minutos e segundos faltam para a data do evento
+        </p>
+    </section>
+
+    <main id="main-container">
+        <section class="event-block" >             
+            <div class="event-header">
+                <h1>Titulo muito legal com enfase no nome</h1>
+                <div class="img-group">
+                    <img src="./assets/edit.svg" alt="">
+                    <img src="./assets/trash-2.svg" alt="">                
+                </div>                
+            </div> 
             
-        </div>
-        <div id="time-cotainer">
+            <div class="event-section">
+                <div class="event-info">
+                    <div class="date-info">
+                        <strong>Data do evento</strong>
+                        <p>20/10/2020</p>
+                    </div>
+                    <div class="time-info">
+                        <strong>As:</strong>
+                        <p>19:00 hrs</p>
+                    </div>
+                    
+                </div>
+
+                <button class="start-btn" >Start</button>
+                
+                <div class="countdown-timer">
+                    <table>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Hora</th>
+                            <th>Min</th>
+                            <th>Sec</th>
+                        </tr>
+                        <tr>
+                            <td>00</td>
+
+                            <td>00</td>
+                            <td>00</td>
+                            <td>00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>        
+        </section>
+       
+        <section class="event-block" >             
+            <div class="event-header">
+                <h1>Titulo muito legal com enfase no nome</h1>
+                <div class="img-group">
+                    <img src="./assets/edit.svg" alt="">
+                    <img src="./assets/trash-2.svg" alt="">                
+                </div>                
+            </div> 
             
-        </div>
+            <div class="event-section">
+                <div class="event-info">
+                    <div class="date-info">
+                        <strong>Data do evento</strong>
+                        <p>20/10/2020</p>
+                    </div>
+                    <div class="time-info">
+                        <strong>As:</strong>
+                        <p>19:00 hrs</p>
+                    </div>
+                    
+                </div>
+
+                <button class="start-btn" >Start</button>
+                
+                <div class="countdown-timer">
+                    <table>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Hora</th>
+                            <th>Min</th>
+                            <th>Sec</th>
+                        </tr>
+                        <tr>
+                            <td>00</td>
+
+                            <td>00</td>
+                            <td>00</td>
+                            <td>00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>        
+        </section>
+
     </main>
 
 
-    <div id="data-field">
-        <fieldset>
-            <label for="event-name">
-                <legend>Event name</legend>
-            </label>
-            <input type="text" name="event-name" id="event-name" placeholder="Enter the event name" required>
-        </fieldset>
 
-        <fieldset>        
-            <label for="date">
-                <legend>Data</legend>
-            </label>
-            <input id="date" type="date" name="date" required>
-        </fieldset>
+    <section id="modal">
+        <div id="data-field">            
+            <fieldset>
+                <label for="input-event-name">
+                    <legend>Event name</legend>
+                </label>
+                <input type="text" name="input-event-name" id="input-event-name" placeholder="Enter the event name" required>
+            </fieldset>
+
+            <div id="input-group">
+                <fieldset>        
+                    <label for="input-event-date">
+                        <legend>Data</legend>
+                    </label>
+                    <input id="input-event-date" type="date" name="input-event-date" required>
+                </fieldset>                
+                <fieldset>
+                    <label for="input-event-time">
+                        <legend>Time</legend>
+                    </label>
+                    <input type="time" name="input-event-time" id="input-event-time">
+                </fieldset>                    
+            </div>
+        </div>         
+        <button id="register-btn" onclick="countDown()">Register</button>
         
-        <fieldset>
-            <label for="time">
-                <legend>Time</legend>
-            </label>
-            <input type="time" name="time" id="time">
-        </fieldset>
-    </div>
-    <span>Time : </span> <span id="hora"></span>    
-    <button onclick="countDown()">Start</button>
-
-
     
-    <div id="test"></div>
-    <div id="not-today"></div>
+    </section>
+    
+
+
+
     <script src="countDown.js"></script>
 </body>
 </html>
+
+
+
+
+<div id="test"></div>
+<div id="not-today"></div>
