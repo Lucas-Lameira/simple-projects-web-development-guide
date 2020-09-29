@@ -94,21 +94,46 @@ header #tooltip{
     width: 10rem;
 }
 
+
+/* TOOLTIP TOOLTIP TOOLTIP TOOOLTIP */
+.tooltip-bg{
+    position: fixed;
+    top: 0rem;
+    right: 0rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+
+}
+
 section#tooltip-content{
     background-color: var(--color-primary);
     color: var(--color-text-primary);
     font-size: 2rem;
     width: 70vw;
-    margin: 0 auto;
+    margin: 8rem auto 0;
     padding: 5rem;
     border-radius: 0.8rem;
     line-height: 3rem;
 }
 
-/* MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN */
-main#main-container{
-    display: none;
+.tooltip-bg span{
+    position: absolute;
+    top: 9rem;
+    right: 13rem;    
 }
+.tooltip-bg span:hover{
+    cursor: pointer;
+}
+
+/* MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN */
+/* main#main-container{
+    
+} */
 
 main#main-container .event-block{
     background-color: var(--color-primary);
@@ -120,7 +145,7 @@ main#main-container .event-block{
     border-radius: 8px;
 }
 main#main-container .event-block h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 0.3rem 0 0 1rem;
 }
 main#main-container .event-block .event-header{
@@ -210,8 +235,43 @@ main#main-container .event-section .countdown-timer th, td{
 
 /* MODAL MODAL MODAL MODAL MODAL */
 
+.modal-bg{
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.modal-open{    
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-close{
+    position: absolute;
+    top: 1rem;
+    right: 1.8rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.modal-close:hover{
+    cursor: pointer;
+}
+
 section#modal{
-    display: none;
+    position: relative;
     background-color: var(--color-primary);
     border-radius: 0.8rem;
     width: 50%;

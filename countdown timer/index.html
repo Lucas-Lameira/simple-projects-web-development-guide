@@ -20,12 +20,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         </button>
     </header>
-
-    <section id="tooltip-content">
-        <p>
-            Clique em Add event para cadastrar a data de um evento e saiba quantos dias, horas, minutos e segundos faltam para a data do evento
-        </p>
-    </section>
+    
 
     <main id="main-container">
         <section class="event-block" >             
@@ -70,57 +65,11 @@
                     </table>
                 </div>
             </div>        
-        </section>
-       
-        <section class="event-block" >             
-            <div class="event-header">
-                <h1>Titulo muito legal com enfase no nome</h1>
-                <div class="img-group">
-                    <img src="./assets/edit.svg" alt="">
-                    <img src="./assets/trash-2.svg" alt="">                
-                </div>                
-            </div> 
-            
-            <div class="event-section">
-                <div class="event-info">
-                    <div class="date-info">
-                        <strong>Data do evento</strong>
-                        <p>20/10/2020</p>
-                    </div>
-                    <div class="time-info">
-                        <strong>As:</strong>
-                        <p>19:00 hrs</p>
-                    </div>
-                    
-                </div>
-
-                <button class="start-btn" >Start</button>
-                
-                <div class="countdown-timer">
-                    <table>
-                        <tr>
-                            <th>Dia</th>
-                            <th>Hora</th>
-                            <th>Min</th>
-                            <th>Sec</th>
-                        </tr>
-                        <tr>
-                            <td>00</td>
-
-                            <td>00</td>
-                            <td>00</td>
-                            <td>00</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>        
-        </section>
-
+        </section>       
     </main>
 
-
-
-    <section id="modal">
+    <div class="modal-bg">    
+    <section id="modal">        
         <div id="data-field">            
             <fieldset>
                 <label for="input-event-name">
@@ -144,20 +93,23 @@
                 </fieldset>                    
             </div>
         </div>         
-        <button id="register-btn" onclick="countDown()">Register</button>
-        
-    
+        <button id="register-btn" onclick="registerNewEvent()">Register</button>  
+        <span class="modal-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+        </span>  
     </section>
-    
+    </div>
 
-
-
+    <div class="tooltip-bg">
+        <section id="tooltip-content">
+            <p>
+                Clique em Add event para cadastrar a data de um evento e saiba quantos dias, horas, minutos e segundos faltam para a data do evento
+            </p>
+            <span class="close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            </span>
+        </section>
+    </div>
     <script src="countDown.js"></script>
 </body>
 </html>
-
-
-
-
-<div id="test"></div>
-<div id="not-today"></div>
