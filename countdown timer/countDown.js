@@ -1,8 +1,3 @@
-var then = document.getElementById('not-today');
-var eventTitle = document.getElementById('title')
-var time_field = document.getElementById('time');
-var outputTime = document.getElementById('hora');
-
 let id=0;
 
 var currentTime;
@@ -25,12 +20,11 @@ var idontknow = [
     {
         id: 0, 
         evento: 'nao tem eevento', 
-        data: '2020-00-00', 
+        date: '2020-00-00', 
         time: '00:00'
     }
 ];
 
-console.log(idontknow);
 
 
 /* MODAL FUNCIONALITY */
@@ -55,9 +49,8 @@ document.querySelector('.close').addEventListener('click', function() {
 
 
 /* REGISTER FUNCTION */
-
 function registerNewEvent () {
-    
+
     let InputEventName = document.getElementById('input-event-name').value;
     let InputEventDate = document.getElementById('input-event-date').value;
     let InputEventTime = document.getElementById('input-event-time').value;
@@ -68,22 +61,17 @@ function registerNewEvent () {
     }
 
 
-    if(validateEmptyDate(InputEventDate)){
-        alert('Data inválida');
-        return
-    }
+    if(validateEmptyDate(InputEventDate, InputEventTime)) return
     
     InputEventTime = validateTime(InputEventTime);
-    console.log(InputEventTime)
 
-    id +=1; 
+    id +=1;
     idontknow.push({
         id: id,
         event: InputEventName,
         date: InputEventDate,
         time: InputEventTime
     })
-    console.log(idontknow);
 
     /* CLOSE MODAL */
     document.querySelector('.modal-bg').classList.remove('modal-open');
@@ -135,7 +123,6 @@ function registerNewEvent () {
     let strongElement1 = document.createElement('strong');
     let pElement1 = document.createElement('p');
     
-
     strongElement1.innerHTML = 'As:';
     pElement1.innerHTML = InputEventTime;
     
@@ -147,7 +134,7 @@ function registerNewEvent () {
     let btn = document.createElement('button');
     btn.innerHTML = 'Start';
     btn.setAttribute('class', 'start-btn');
-    btn.setAttribute('id', id);
+    btn.setAttribute('id', `${idontknow[id].event}`);
     btn.setAttribute('onclick', `countDown(${id})`)
     
     let divCountDownTimer = document.createElement('div')
@@ -195,27 +182,20 @@ function registerNewEvent () {
     document.getElementById('main-container').appendChild(sectionElement);
 }
 
-
-function countDown(buttonId) {         
-    console.log(buttonId)
-    let sizeArray = idontknow.length 
-    let i
-
-    for(i=1; i<sizeArray; i++){
-        if(buttonId == idontknow[i].id){
-            return i
-        }
-    }
-
+function countDown(passedId) {  
+    
+    let coutdownelemtn = document.querySelector(`button#${idontknow[id].event}`).nextElementSibling.children[0].childNodes[1].childNodes;
+    
+    /* console.log(coutdownelemtn) */
     if (!toggleBtn) {
-        document.querySelector(`button#${id}`).innerHTML = 'Stop';
+        document.querySelector(`button#${idontknow[id].event}`).innerHTML = 'Stop';
         toggleBtn = true;
         
-        let [year, month, day] = idontknow[i].data.split('-');
-        let [hour, minute] = idontknow[i].time.split(':');
+        let [year, month, day] = idontknow[passedId].date.split('-');
+        let [hour, minute] = idontknow[passedId].time.split(':');
         
         /* Janeiro ta na posição zero do array */
-        month-=1; 
+        month-=1;
 
         function renderTime(){        
             currentTime = new Date().getTime();
@@ -237,14 +217,16 @@ function countDown(buttonId) {
             hora = hora < 10 ? "0" + hora: hora; 
             minutos = minutos < 10 ? "0" + minutos: minutos; 
             segundos = segundos < 10 ? "0" + segundos: segundos; 
-                
-            then.innerHTML = dia + ':' + hora + ':' + minutos + ':' + segundos;       
-           
+            
+            coutdownelemtn[0].innerHTML = dia
+            coutdownelemtn[1].innerHTML = hora
+            coutdownelemtn[2].innerHTML = minutos
+            coutdownelemtn[3].innerHTML = segundos
         }
         intervalId = setInterval(renderTime, 1000);
 
     } else {
-        document.querySelector('button').innerHTML = 'Start';
+        document.querySelector(`button#${idontknow[passedId].event}`).innerHTML = 'Start';
         toggleBtn = false;
         clearInterval(intervalId)
     }
@@ -258,19 +240,32 @@ function validateEventName(event_name_input) {
         return false;
 }
 
-function validateEmptyDate (date_field_input) {
-    if(date_field_input === '') return true;
-    
-    date_field_input = date_field_input.split('-')
-    
-    if(Number(date_field_input[0]) < x.getFullYear() || Number(date_field_input[1]) < x.getMonth()+1 || Number(date_field_input[2]) < x.getDate()){
+function validateEmptyDate (xdate, xtime) {
+    if(xdate == ''){
+        alert('Empty date');
         return true;
-    } else{        
-        return false;
-    }
+    } 
+
+    xtime = validateTime(xtime)
+    
+    let [y, mth, d] = xdate.split('-');
+    let [h, min] = xtime.split(':');
+    mth-=1;
+        
+    let current = new Date().getTime();
+    let event = new Date(y, mth, d, h, min).getTime();
+    
+    check = event - current;
+    /* console.log(check)
+    console.log(typeof(check)) */
+    if(check <= 0 || isNaN(check)) {
+        alert('Data ou Hora Inválida!');
+        return true
+    } 
+    else return false
 }
 
-function validateTime(InputEventTime){
+function validateTime(InputEventTime){        
     if(InputEventTime === ''){        
         return InputEventTime = "00:00";        
     }else{
